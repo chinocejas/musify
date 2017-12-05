@@ -1,0 +1,50 @@
+
+    <!-- Formulario -->
+    <div  class="col-lg-6">
+            <h1>{{titulo}}</h1>
+             
+            <div *ngIf="alertMessage" class="alert alert-info" role="alert">
+                <strong>YEAHHH!</strong> {{alertMessage}}
+            </div>
+
+              <form #userUpdateForm="ngForm" (ngSubmit)="onSubmit()" class="" action="">
+                  <p>
+                    
+                    <input type="text" #name="ngModel" name="name" [(ngModel)]="user.name" class="form-control" required placeholder="Name" />
+                    <span *ngIf="!name.valid && name.touched">
+                      El nombre es Obligatorio men 
+                    </span>
+                  </p>
+                  <p>
+                      
+                      <input  type="text" #surname="ngModel" name="surname" [(ngModel)]="user.surname" class="form-control" required placeholder="Apellido" />
+                      <span *ngIf="!surname.valid && surname.touched">
+                        El apellido es Obligatorio men 
+                      </span>
+                    </p>
+                    <p>
+                     
+                      <input type="email" class="form-control" #email="ngModel" name="email" [(ngModel)]="user.email" required placeholder="email" />
+                      <span *ngIf="!email.valid && email.touched">
+                        El email es Obligatorio men 
+                      </span>
+                    </p>
+                    
+                
+
+                <div *ngIf="user.image && user.image != 'null'" class="image_for_edit">
+                <img src="{{ url+'get-image-user/'+ user.image}}" alt=""  width= "128px"
+                height= "128px" >      
+                </div>  
+                <p>
+                    <label for="">Sube tu foto:</label>
+                    <input type="file" placeholder="Subir imagen.." (change)="fileChangeEvent($event)" >
+                </p>
+                
+
+                  <input type="submit" value="Editar" class="btn btn-primary">
+                
+                  
+        
+            </form>
+          </div>

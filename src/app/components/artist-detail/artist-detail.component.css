@@ -1,0 +1,21 @@
+.artist-head-card{
+	width: 130px;
+	height: 130px;
+	float: left;
+	margin-right: 50px;
+	margin: 5%;
+}
+
+.artist-head-card data{
+	
+}
+
+.artist-head-card img{
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	overflow: hidden;
+	float: left;
+
+
+}

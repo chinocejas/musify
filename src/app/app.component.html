@@ -1,0 +1,139 @@
+<div class="row">
+
+
+<div *ngIf="identity" class=" navigation col-lg-1 ">
+      <h1 class="head-title">
+        <a [routerLink]="['/']"  >
+        {{title}}
+        </a>
+      </h1>
+      <!--Menu -->
+      <a href="#">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            Buscar
+      </a>
+      <a [routerLink]="['/artists',1]" [routerLinkActive]="['active']" >
+        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+        Artistas
+      </a>
+      <a href="#">
+        <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+        Albums
+      </a>
+  
+  <!--User Logged Menu -->
+      <nav id="user_logged">
+              <div class="user-image">
+              <img id="image-logged" src="{{ url+'get-image-user/'+ identity.image}}" alt=""  w >      
+              </div>
+              <span id="identity_name">
+                {{identity.name}}
+              </span>
+        
+              <a [routerLink]="['/mis-datos']" [routerLinkActive]="['active']" >
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                Mis datos
+              </a>
+
+              <a id="log-out" (click)="logOut()">
+                  <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                  salir
+              </a>
+   
+      
+       </nav>
+  
+  
+</div> 
+      <div [class.hidden]="!identity" class="col-lg-10">
+          
+          <router-outlet></router-outlet>
+      </div>
+
+
+      <!--If User is loggout -->
+      <div *ngIf="!identity " class="col-lg-4 container-fluid">
+          
+          <div *ngIf="!registrarUsuario"  class=" ">
+            <h3>Identificate</h3>
+            
+            <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="" action="">
+              <p>
+                
+                <input type="email" class="form-control" #email="ngModel" name="email" [(ngModel)]="user.email" required placeholder="email" />
+                <span *ngIf="!email.valid && email.touched">
+                  El email es Obligatorio men 
+                </span>
+              </p>
+              <p>
+                
+                <input type="password" #password="ngModel" name="password" [(ngModel)]="user.password" class="form-control" required placeholder="password" />
+                <span *ngIf="!password.valid && password.touched">
+                    Password es Obligatorio men 
+                  </span>
+              </p>
+              <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+                  <strong>Oh lpm!</strong> {{errorMessage}}
+                </div>
+               
+                  <input type="submit" value="Entrar" class="btn btn-primary btn-block btn-large">
+                   
+              
+            </form>
+        
+            <a (click)="formularioRegister()" href="#">registrarse</a>
+          </div>
+        
+          <div *ngIf="registrarUsuario"  class="container-fluid ">
+            <h3>Registrate</h3>
+              <div *ngIf="alertRegister" class="alert alert-info" role="alert">
+                <strong>YEAHHH!</strong> {{alertRegister}}
+              </div>
+              <form #registerForm="ngForm" (ngSubmit)="onSubmitRegister()" class="" action="">
+                  <p>
+                    
+                    <input type="text" #name="ngModel" name="name" [(ngModel)]="user_register.name" class="form-control" required placeholder="Name" />
+                    <span *ngIf="!name.valid && name.touched">
+                      El nombre es Obligatorio men 
+                    </span>
+                  </p>
+                  <p>
+                      
+                      <input  type="text" #surname="ngModel" name="surname" [(ngModel)]="user_register.surname" class="form-control" required placeholder="Apellido" />
+                      <span *ngIf="!surname.valid && surname.touched">
+                        El apellido es Obligatorio men 
+                      </span>
+                    </p>
+                    <p>
+                     
+                      <input type="email" class="form-control" #email="ngModel" name="email" [(ngModel)]="user_register.email" required placeholder="email" />
+                      <span *ngIf="!email.valid && email.touched">
+                        El email es Obligatorio men 
+                      </span>
+                    </p>
+                    <p>
+                      
+                      <input type="password" #password="ngModel" name="password" [(ngModel)]="user_register.password" class="form-control" required placeholder="password" />
+                      <span *ngIf="!password.valid && password.touched">
+                          Password es Obligatorio men 
+                        </span>
+                    </p>
+                <p>
+                  <button class="btn btn-primary" (click)="formularioRegister()">Cancelar</button>
+                  <input type="submit" value="Registrarse" class="btn btn-primary">
+                </p>
+                  
+        
+            </form>
+          </div>
+        </div>
+
+</div>
+
+
+
+ 
+
+
+
+
