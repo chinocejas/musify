@@ -1,2 +1,2 @@
 # musify
-Angula App for listen local music like Spotify
+Angular App for listen local music like Spotify
